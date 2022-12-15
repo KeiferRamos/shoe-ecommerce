@@ -11,7 +11,7 @@ type SeoDataTypes = {
 
 function Seo({ title, description, keywords, image, url }: SeoDataTypes) {
   return (
-    <Helmet htmlAttributes={{ lang: "en" }}>
+    <Helmet>
       <title>{title ? title : "Nike Shoe"}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
