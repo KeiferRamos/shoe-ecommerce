@@ -75,7 +75,7 @@ function Home() {
       "Shoes, Shoe, shoes, shoe, Nike, nike, lebron, jordan, Jordan, Lebron, lebron james, micheal jordan, basketball shoe, football shoe, running",
     image:
       "https://gilded-creponne-eb2b3e.netlify.app/static/shoe-bg-7f40f9bd7e9e267bf62fe97637105885.webp",
-    url: "https://gilded-creponne-eb2b3e.netlify.app/",
+    url: "https://shoe-master.netlify.app",
   };
 
   return (

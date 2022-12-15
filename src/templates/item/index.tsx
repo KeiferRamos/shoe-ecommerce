@@ -30,6 +30,7 @@ import {
 import sizes from "../../data/sizes";
 
 import CloseIcon from "../../assets/images/close.webp";
+import { convertNum } from "../../utils/convert-to-price";
 
 type dataType = {
   data: { shoe: shoeType };
@@ -77,9 +78,8 @@ function Item({
     isFullscreen: false,
     selected: {},
   });
-
   const pathName = name.toLowerCase().replace(/ /g, "-");
-  const url = `https://gilded-creponne-eb2b3e.netlify.app/${category}/${pathName}`;
+  const url = `https://shoe-master.netlify.app/${category}/${pathName}/`;
 
   const SeoData = {
     title: name,
@@ -125,9 +125,7 @@ function Item({
         <section>
           <StyledDetails>
             <h2>{name}</h2>
-            <p>
-              P {price.toString()[0]},{price.toString().slice(1)}
-            </p>
+            <p>P {convertNum(price)}</p>
             <div>
               <FacebookShareButton url={url}>
                 <FacebookIcon />
