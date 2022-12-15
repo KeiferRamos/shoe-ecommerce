@@ -26,7 +26,8 @@
     "gatsby-transformer-sharp": "^5.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-slick": "^0.29.0",
+    "react-helmet": "^6.1.0",
+    "react-share": "^4.4.1",
     "styled-components": "^5.3.6"
   },
   "repository": {
@@ -40,6 +41,7 @@
     "@types/node": "^18.11.11",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
+    "@types/react-helmet": "^6.1.6",
     "@types/react-slick": "^0.23.10",
     "@types/styled-components": "^5.1.26"
   }

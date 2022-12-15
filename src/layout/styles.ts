@@ -40,6 +40,10 @@ export const MainContainer = styled.div`
     padding: 50px 20px;
   }
 
+  @media (max-width: 500px) {
+    padding: 50px 10px;
+  }
+
   .side-modal {
     width: 400px;
     position: fixed;

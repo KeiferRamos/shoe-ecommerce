@@ -12,6 +12,7 @@ export const Container = styled.div`
   @media (max-width: 500px) {
     height: fit-content;
     padding-top: 10px;
+    gap: 5px;
   }
 
   header {
@@ -106,6 +107,7 @@ export const StyledList = styled.div`
 
   @media (max-width: 500px) {
     grid-template-columns: repeat(auto-fill, minmax(150px, auto));
+    gap: 5px;
   }
 
   a {

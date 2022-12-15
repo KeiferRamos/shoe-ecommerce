@@ -1,6 +1,21 @@
 import { graphql } from "gatsby";
 import React, { useState } from "react";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  LinkedinShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
+  LinkedinIcon,
+} from "react-share";
+
+import Popup from "../../components/popup-modal";
+import Seo from "../../components/seo";
 import Layout from "../../layout";
+
 import {
   StyledImages,
   StyledDetails,
@@ -11,20 +26,24 @@ import {
   FullScreenContainer,
   StyledInfo,
 } from "./style";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+
 import sizes from "../../data/sizes";
+
 import CloseIcon from "../../assets/images/close.webp";
-import Popup from "../../components/popup-modal";
 
 type dataType = {
   data: { shoe: shoeType };
 };
 
 type shoeType = {
+  category: string;
   colors: {
     raw: string;
   };
-  images: { gatsbyImageData: any }[];
+  images: {
+    gatsbyImageData: any;
+    url: string;
+  }[];
   name: string;
   price: number;
   link: string;
@@ -37,22 +56,41 @@ type shoeType = {
 
 function Item({
   data: {
-    shoe: { name, price, colors, images, link, info, benifits, details },
+    shoe: {
+      name,
+      price,
+      colors,
+      images,
+      link,
+      info,
+      benifits,
+      details,
+      category,
+    },
   },
 }: dataType) {
   const parsedColor = JSON.parse(colors.raw);
   const colorString = parsedColor.content[0].content[0].value;
 
-  const [selectedColor, setSelectedColor] = useState("");
-  const [selectedSize, setSelectedSize] = useState("");
   const [showDetails, setShowDetails] = useState(false);
   const [fullScreen, setFullScreen] = useState({
     isFullscreen: false,
     selected: {},
   });
 
+  const pathName = name.toLowerCase().replace(/ /g, "-");
+  const url = `https://gilded-creponne-eb2b3e.netlify.app/${category}/${pathName}`;
+
+  const SeoData = {
+    title: name,
+    description: info.info,
+    image: images[0].url,
+    url,
+  };
+
   return (
     <Layout>
+      <Seo {...SeoData} />
       <Container>
         {fullScreen.isFullscreen ? (
           <FullScreenContainer>
@@ -88,6 +126,17 @@ function Item({
             <p>
               P {price.toString()[0]},{price.toString().slice(1)}
             </p>
+            <div>
+              <FacebookShareButton url={url}>
+                <FacebookIcon />
+              </FacebookShareButton>
+              <WhatsappShareButton url={url}>
+                <WhatsappIcon />
+              </WhatsappShareButton>
+              <TwitterShareButton url={url}>
+                <TwitterIcon />
+              </TwitterShareButton>
+            </div>
           </StyledDetails>
           <StyledSizes>
             {sizes.map((size, i) => {
@@ -107,7 +156,7 @@ function Item({
             {info.info.split("\n\n").map((text, i) => {
               return <p key={i}>{text}</p>;
             })}
-            <button onClick={() => setShowDetails(true)}>
+            <button id="product-details" onClick={() => setShowDetails(true)}>
               Product Details
             </button>
           </StyledInfo>
@@ -127,11 +176,13 @@ function Item({
 export const getData = graphql`
   query MyQuery($name: String) {
     shoe: contentfulShoe(name: { eq: $name }) {
+      category
       name
       colors {
         raw
       }
       images {
+        url
         gatsbyImageData(
           placeholder: DOMINANT_COLOR
           layout: CONSTRAINED

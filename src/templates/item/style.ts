@@ -42,6 +42,12 @@ export const StyledImages = styled.div`
 export const StyledDetails = styled.div`
   color: #fff;
   margin-bottom: 10px;
+
+  svg {
+    width: 40px;
+    height: 40px;
+    margin-top: 10px;
+  }
 `;
 
 export const StyledSizes = styled.div`

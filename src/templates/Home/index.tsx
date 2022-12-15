@@ -1,11 +1,13 @@
 import React from "react";
+import styled from "styled-components";
+
 import Layout from "../../layout";
+import Seo from "../../components/seo";
+
 import ShoeBg from "../../assets/images/shoe-bg.webp";
 import InstagramIcon from "../../assets/images/instagram (1).webp";
 import FacebookIcon from "../../assets/images/facebook (1).webp";
-
 import GithubIcon from "../../assets/images/github.webp";
-import styled from "styled-components";
 
 const StyledMain = styled.main`
   height: 100%;
@@ -65,8 +67,20 @@ const Icons = styled.ul`
 `;
 
 function Home() {
+  const SeoData = {
+    title: "Nike Shoe",
+    description:
+      "Nike Inc (formerly known as Blue Ribbon Sports) is a sought after American athletic shoe, equipment, and sports clothing brand. On January 25, 1964, the well-known brand 'Nike' was born. The founders Phil Knight and Oregon University coach Bill Bowerman began by importing shoes to the USA from Japan.",
+    keywords:
+      "Shoes, Shoe, shoes, shoe, Nike, nike, lebron, jordan, Jordan, Lebron, lebron james, micheal jordan, basketball shoe, football shoe, running",
+    image:
+      "https://gilded-creponne-eb2b3e.netlify.app/static/shoe-bg-7f40f9bd7e9e267bf62fe97637105885.webp",
+    url: "https://gilded-creponne-eb2b3e.netlify.app/",
+  };
+
   return (
     <Layout>
+      <Seo {...SeoData} />
       <StyledMain>
         <header>
           <h1>Find Your Pace</h1>
