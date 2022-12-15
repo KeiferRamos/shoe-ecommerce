@@ -88,6 +88,8 @@ function Item({
     url,
   };
 
+  console.log(SeoData);
+
   return (
     <Layout>
       <Seo {...SeoData} />

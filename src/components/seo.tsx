@@ -11,17 +11,18 @@ type SeoDataTypes = {
 
 function Seo({ title, description, keywords, image, url }: SeoDataTypes) {
   return (
-    <Helmet
-      htmlAttributes={{ lang: "en" }}
-      title={title}
-      meta={[
-        { name: "keywords", content: keywords },
-        { name: "description", content: description },
-        { name: "og:image", content: image },
-        { name: "og:title", content: title },
-        { name: "og:url", content: url },
-      ]}
-    />
+    <Helmet htmlAttributes={{ lang: "en" }}>
+      <title>{title ? title : "Nike Shoe"}</title>
+      <meta name="description" content={description} />
+      <meta name="keywords" content={keywords} />
+      <meta name="og:title" content={title} />
+      <meta name="og:image" content={image} />
+      <link rel="canonical" href={url} />
+      <meta name="og:url" content={url} />
+      <meta name="twitter:image" content={image} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <link rel="preload" as="image" href={image} />
+    </Helmet>
   );
 }
 
