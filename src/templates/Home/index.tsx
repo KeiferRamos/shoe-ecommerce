@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { StaticImage } from "gatsby-plugin-image";
 
 import Layout from "../../layout";
 import Seo from "../../components/seo";

@@ -1,10 +1,10 @@
 @font-face {
-  font-family: "Space Mono";
+  font-family: "Space Mono", monospace;
   src: url("../fonts/SpaceMono-Regular.ttf");
 }
 
 @font-face {
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
   src: url("../fonts/Poppins-Regular.ttf");
 }
 
@@ -18,7 +18,7 @@ body {
   width: 100%;
   height: 100vh;
 
-  font-family: "Space Mono";
+  font-family: "Space Mono", monospace;
   background: linear-gradient(45deg, #282d35 63%, #3f444d 47%);
   overflow: scroll;
   background-repeat: no-repeat;
@@ -50,7 +50,7 @@ textarea {
 
 button {
   border: none;
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
   letter-spacing: 2px;
 }
 
@@ -58,7 +58,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
 }
 
 textarea {
