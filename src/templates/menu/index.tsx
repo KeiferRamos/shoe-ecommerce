@@ -71,8 +71,6 @@ function Menu({
 
   const SeoData = {
     title: "Nike Shoe",
-    description:
-      "Nike Inc (formerly known as Blue Ribbon Sports) is a sought after American athletic shoe, equipment, and sports clothing brand. On January 25, 1964, the well-known brand 'Nike' was born. The founders Phil Knight and Oregon University coach Bill Bowerman began by importing shoes to the USA from Japan.",
     image:
       "https://shoe-master.netlify.app/static/shoe-bg-7f40f9bd7e9e267bf62fe97637105885.webp",
     url: "https://shoe-master.netlify.app",
