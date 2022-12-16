@@ -1,6 +1,9 @@
 import { graphql, Link } from "gatsby";
 import React, { useState } from "react";
+
 import Layout from "../../layout/index";
+import Seo from "../../components/seo";
+
 import {
   Container,
   StyledFilter,
@@ -11,6 +14,7 @@ import {
   FilterContainer,
   EmptyContent,
 } from "./style";
+
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import SearchIcon from "../../assets/images/search.webp";
 import Filter from "../../assets/images/filter.webp";
@@ -65,8 +69,18 @@ function Menu({
     }
   };
 
+  const SeoData = {
+    title: "Nike Shoe",
+    description:
+      "Nike Inc (formerly known as Blue Ribbon Sports) is a sought after American athletic shoe, equipment, and sports clothing brand. On January 25, 1964, the well-known brand 'Nike' was born. The founders Phil Knight and Oregon University coach Bill Bowerman began by importing shoes to the USA from Japan.",
+    image:
+      "https://shoe-master.netlify.app/static/shoe-bg-7f40f9bd7e9e267bf62fe97637105885.webp",
+    url: "https://shoe-master.netlify.app",
+  };
+
   return (
     <Layout>
+      <Seo {...SeoData} />
       <Container>
         <header>
           <h2>

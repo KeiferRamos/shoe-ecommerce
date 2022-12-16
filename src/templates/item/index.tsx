@@ -6,10 +6,8 @@ import {
   FacebookIcon,
   TwitterShareButton,
   TwitterIcon,
-  LinkedinShareButton,
   WhatsappIcon,
   WhatsappShareButton,
-  LinkedinIcon,
 } from "react-share";
 
 import Popup from "../../components/popup-modal";
