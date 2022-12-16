@@ -13,15 +13,14 @@ function Seo({ title, description, keywords, image, url }: SeoDataTypes) {
   return (
     <Helmet>
       <title>{title ? title : "Nike Shoe"}</title>
-      <meta name="description" content={description} />
-      <meta name="keywords" content={keywords} />
       <meta name="og:title" content={title} />
+      <meta name="description" content={description} />
       <meta name="og:image" content={image} />
       <link rel="canonical" href={url} />
       <meta name="og:url" content={url} />
       <meta name="twitter:image" content={image} />
       <meta name="twitter:card" content="summary_large_image" />
-      <link rel="preload" as="image" href={image} />
+      <meta name="keywords" content={keywords} />
     </Helmet>
   );
 }
