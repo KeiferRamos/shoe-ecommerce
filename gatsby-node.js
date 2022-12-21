@@ -43,10 +43,49 @@ exports.createPages = async ({ graphql, actions }) => {
       path: `/${key}`,
       component: MenuPageTemplate,
       context: {
+        key: null,
         filters,
-        name: key,
+        names: [key],
       },
     });
+
+    filters.forEach((category) => {
+      const pathName = category.toLowerCase().replace(/ /g, "-");
+      createPage({
+        path: `/${key}/${pathName}`,
+        component: MenuPageTemplate,
+        context: {
+          filters,
+          names: [key],
+          key: category,
+        },
+      });
+    });
+  });
+
+  const filters = [...new Set(nodes.map(({ filter }) => filter))];
+
+  filters.forEach((key) => {
+    const pathName = key.toLowerCase().replace(/ /g, "-");
+    createPage({
+      path: `/all/${pathName}`,
+      component: MenuPageTemplate,
+      context: {
+        filters,
+        key,
+        names: ["men", "women", "kids"],
+      },
+    });
+  });
+
+  createPage({
+    path: "/all",
+    component: MenuPageTemplate,
+    context: {
+      filters,
+      names: ["men", "women", "kids"],
+      key: null,
+    },
   });
 
   createPage({

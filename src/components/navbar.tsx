@@ -38,7 +38,7 @@ const StyledNav = styled.nav`
   }
 
   .open-nav {
-    height: 240px;
+    height: 285px;
   }
 
   .toggle-nav {
@@ -165,6 +165,9 @@ function Navbar() {
           </Link>
           <Link activeClassName="active-link" to="/kids">
             kids
+          </Link>
+          <Link activeClassName="active-link" to="/all">
+            All
           </Link>
           <button id="contact-us-btn" onClick={() => setOpenChat(true)}>
             contact us

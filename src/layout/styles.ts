@@ -3,16 +3,8 @@ import styled from "styled-components";
 export const MainContainer = styled.div`
   padding: 100px 15% 0 15%;
   height: 100vh;
-
-  @media (min-width: 1100px) {
-    display: grid;
-    grid-template-rows: 100px auto 50px;
-  }
+  width: 100%;
   overflow: scroll;
-
-  ::-webkit-scrollbar {
-    display: none;
-  }
 
   .close-chat {
     right: -400px;
@@ -28,20 +20,21 @@ export const MainContainer = styled.div`
 
   #arrow-up {
     width: 40px;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgb(143, 28, 45, 0.5);
     padding: 10px;
-    border-radius: 3px;
+    border-radius: 5px;
     position: fixed;
     bottom: 20px;
     right: 20px;
+    z-index: 99999999999999;
   }
 
   @media (max-width: 800px) {
-    padding: 50px 20px;
+    padding: 50px 20px 0 20px;
   }
 
   @media (max-width: 500px) {
-    padding: 50px 10px;
+    padding: 50px 10px 0 10px;
   }
 
   .side-modal {

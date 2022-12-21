@@ -15,6 +15,7 @@ const ModalContainer = styled.div`
   place-items: center;
   background: rgba(0, 0, 0, 0.6);
   padding: 25px;
+  z-index: 99999999;
 
   @media (max-width: 360px) {
     padding: 0;

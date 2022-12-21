@@ -26,11 +26,13 @@ function Menu({
   data: {
     shoes: { nodes },
   },
-  pageContext: { filters, name },
+  pageContext: { filters, names, key },
 }) {
-  const [shoes, setShoes] = useState(nodes);
-  const [filter, setFilter] = useState("");
-  const [label, setLabel] = useState("");
+  const [shoes, setShoes] = useState(
+    key ? nodes.filter((shoe) => shoe.filter === key) : nodes
+  );
+  const [filter, setFilter] = useState(key ? key : "");
+  const [label, setLabel] = useState(key ? key : "");
   const [openFilter, setOpenFilter] = useState(false);
 
   const selectCategory = (key: string) => {
@@ -82,7 +84,7 @@ function Menu({
       <Container>
         <header>
           <h2>
-            {name}'s {label} Shoes ({shoes.length})
+            {names[0] ? names[0] : "All"}'s {label} Shoes ({shoes.length})
           </h2>
           <img
             src={Filter}
@@ -107,14 +109,16 @@ function Menu({
         <FilterContainer className={openFilter ? "open-filter" : ""}>
           <StyledFilter>
             {filters.map((text: string, i: number) => {
+              const identity = names.length > 1 ? "all" : names[0];
               return (
-                <span
+                <Link
+                  to={`/${identity}/${text}`}
                   className={filter === text ? "selected" : ""}
                   key={i}
                   onClick={() => selectCategory(text)}
                 >
                   {text}
-                </span>
+                </Link>
               );
             })}
           </StyledFilter>
@@ -135,15 +139,24 @@ function Menu({
           <StyledGender>
             <p>Categories</p>
             <Link to="/men">
-              <input type="checkbox" defaultChecked={name === "men"} />
+              <input
+                type="checkbox"
+                defaultChecked={names[0] === "men" && names.length === 1}
+              />
               <label htmlFor="men">men</label>
             </Link>
             <Link to="/kids">
-              <input type="checkbox" defaultChecked={name === "kids"} />
+              <input
+                type="checkbox"
+                defaultChecked={names[0] === "kids" && names.length === 1}
+              />
               <label htmlFor="women">kids</label>
             </Link>
             <Link to="/women">
-              <input type="checkbox" defaultChecked={name === "women"} />
+              <input
+                type="checkbox"
+                defaultChecked={names[0] === "women" && names.length === 1}
+              />
               <label htmlFor="women">women</label>
             </Link>
           </StyledGender>
@@ -175,8 +188,8 @@ function Menu({
 }
 
 export const getData = graphql`
-  query MyQuery($name: String) {
-    shoes: allContentfulShoe(filter: { category: { eq: $name } }) {
+  query MyQuery($names: [String]) {
+    shoes: allContentfulShoe(filter: { category: { in: $names } }) {
       nodes {
         filter
         name

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../assets/styles/styles.css";
 import Navbar from "../components/navbar";
 import ArrowUp from "../assets/images/up-arrow.webp";
+import Footer from "../components/footer";
 import { MainContainer } from "./styles";
 
 function Wrapper({ children }) {
@@ -29,6 +30,7 @@ function Wrapper({ children }) {
       {scrollHeight >= 200 ? (
         <img onClick={() => scrollBack()} src={ArrowUp} id="arrow-up" />
       ) : null}
+      <Footer />
     </MainContainer>
   );
 }

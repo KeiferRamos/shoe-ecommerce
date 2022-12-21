@@ -19,7 +19,7 @@ export const StyledImages = styled.div`
   gap: 5px;
 
   .gatsby-image-wrapper {
-    max-height: 340px;
+    max-height: 300px;
     background: #f5f9f9;
 
     img {
@@ -56,9 +56,17 @@ export const StyledSizes = styled.div`
   gap: 5px;
   color: #bebebe;
 
+  .not-available {
+    background: #bebebe;
+    opacity: 0.2;
+    color: #fff;
+    cursor: not-allowed !important;
+  }
+
   span {
     padding: 5px 10px;
     border: 1px solid;
+    cursor: pointer;
   }
 `;
 

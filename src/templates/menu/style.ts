@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  height: 100%;
   display: flex;
   padding-top: 50px;
   color: #bebebe;
   gap: 10px;
   position: relative;
   flex-wrap: wrap;
+  margin-bottom: 50px;
 
   @media (max-width: 500px) {
     height: fit-content;
@@ -70,7 +70,7 @@ export const StyledFilter = styled.div`
     }
   }
 
-  span {
+  a {
     color: #000;
     background: #fff;
     padding: 15px;
@@ -92,8 +92,8 @@ export const StyledList = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, auto));
   gap: 10px;
+  height: max-content;
   position: relative;
-  min-height: 650px;
   padding-bottom: 20px;
 
   @media (min-width: 1100px) {

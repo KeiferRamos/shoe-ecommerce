@@ -9,7 +9,7 @@ import {
   WhatsappIcon,
   WhatsappShareButton,
 } from "react-share";
-
+import "../../assets/styles/slick-theme.css";
 import Popup from "../../components/popup-modal";
 import Seo from "../../components/seo";
 import Layout from "../../layout";
@@ -29,13 +29,14 @@ import sizes from "../../data/sizes";
 
 import CloseIcon from "../../assets/images/close.webp";
 import { convertNum } from "../../utils/convert-to-price";
+import SliderContainer from "../../components/slider";
 
 type dataType = {
   data: { shoe: shoeType };
 };
 
 type shoeType = {
-  category: string;
+  category: "women" | "men" | "kids";
   colors: {
     raw: string;
   };
@@ -51,6 +52,12 @@ type shoeType = {
   };
   benifits: any;
   details: any;
+  availableSizes: string;
+  similar: {
+    image: string;
+    name: string;
+    category: "women" | "men" | "kids";
+  }[];
 };
 
 function Item({
@@ -65,6 +72,8 @@ function Item({
       benifits,
       details,
       category,
+      availableSizes: available,
+      similar,
     },
   },
 }: dataType) {
@@ -86,12 +95,10 @@ function Item({
     url,
   };
 
-  console.log(SeoData);
-
   return (
     <Layout>
-      <Seo {...SeoData} />
       <Container>
+        <Seo {...SeoData} />
         {fullScreen.isFullscreen ? (
           <FullScreenContainer>
             <img
@@ -138,7 +145,16 @@ function Item({
           </StyledDetails>
           <StyledSizes>
             {sizes.map((size, i) => {
-              return <span key={i}>{size}</span>;
+              return (
+                <span
+                  className={
+                    !available.split(",").includes(size) ? "not-available" : ""
+                  }
+                  key={i}
+                >
+                  US {size}
+                </span>
+              );
             })}
           </StyledSizes>
           <StyledColor>
@@ -167,6 +183,10 @@ function Item({
           />
         ) : null}
       </Container>
+      <h2 style={{ color: "#bebebe", marginTop: "65px" }}>
+        You Might Also Like
+      </h2>
+      <SliderContainer similar={similar} />
     </Layout>
   );
 }
@@ -197,6 +217,12 @@ export const getData = graphql`
       }
       details {
         raw
+      }
+      availableSizes
+      similar: relatedProduct {
+        image
+        name
+        category
       }
     }
   }
