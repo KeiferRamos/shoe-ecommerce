@@ -110,9 +110,10 @@ function Menu({
           <StyledFilter>
             {filters.map((text: string, i: number) => {
               const identity = names.length > 1 ? "all" : names[0];
+              const pathName = text.toLowerCase().replace(/ /g, "-");
               return (
                 <Link
-                  to={`/${identity}/${text}`}
+                  to={`/${identity}/${pathName}`}
                   className={filter === text ? "selected" : ""}
                   key={i}
                   onClick={() => selectCategory(text)}
