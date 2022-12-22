@@ -50,7 +50,7 @@ const StyledMain = styled.main`
     }
 
     img {
-      width: 100%;
+      width: calc(100% - 20px);
       padding: 40px;
       rotate: -25deg;
 
