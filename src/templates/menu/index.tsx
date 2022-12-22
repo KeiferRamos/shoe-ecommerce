@@ -26,38 +26,23 @@ function Menu({
   data: {
     shoes: { nodes },
   },
-  pageContext: { filters, names, key },
+  pageContext: { filters, names, key, prize },
 }) {
+  const selectedPrice = price.find(({ slug }) => slug === prize)!;
   const [shoes, setShoes] = useState(
-    key ? nodes.filter((shoe) => shoe.filter === key) : nodes
+    key
+      ? nodes.filter((shoe) => shoe.filter === key)
+      : prize
+      ? nodes.filter(
+          (shoe) =>
+            shoe.price <= selectedPrice.value[1] &&
+            shoe.price >= selectedPrice.value[0]
+        )
+      : nodes
   );
   const [filter, setFilter] = useState(key ? key : "");
   const [label, setLabel] = useState(key ? key : "");
   const [openFilter, setOpenFilter] = useState(false);
-
-  const selectCategory = (key: string) => {
-    if (key === filter) {
-      setShoes(nodes);
-      setFilter("");
-      setLabel("");
-    } else {
-      setShoes(nodes.filter((shoe) => shoe.filter === key));
-      setFilter(key);
-      setLabel(key);
-    }
-  };
-
-  const filterByPrice = (value: number[], label: string) => {
-    if (label === filter) {
-      setFilter("");
-      setShoes(nodes);
-    } else {
-      setFilter(label);
-      setShoes(
-        nodes.filter(({ price }) => price <= value[1] && price >= value[0])
-      );
-    }
-  };
 
   const search = (key: string) => {
     if (key) {
@@ -116,7 +101,6 @@ function Menu({
                   to={`/${identity}/${pathName}`}
                   className={filter === text ? "selected" : ""}
                   key={i}
-                  onClick={() => selectCategory(text)}
                 >
                   {text}
                 </Link>
@@ -126,11 +110,14 @@ function Menu({
           <StyledPrice>
             <p>Shop By Price</p>
             <ul>
-              {price.map(({ label, value }) => {
+              {price.map(({ label, slug }) => {
+                const identity = names.length > 1 ? "all" : names[0];
                 return (
-                  <li key={label} onClick={() => filterByPrice(value, label)}>
-                    {label === filter ? <span>•</span> : ""}
-                    {label}
+                  <li key={label}>
+                    <Link to={`/${identity}/${slug}`}>
+                      {label === filter ? <span>•</span> : ""}
+                      {label}
+                    </Link>
                   </li>
                 );
               })}

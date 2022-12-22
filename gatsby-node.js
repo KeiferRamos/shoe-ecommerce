@@ -23,6 +23,8 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
+  const prizes = ["0-5000", "5000-7000", "7000-20000"];
+
   ["men", "women", "kids"].forEach((key) => {
     const filteredShoes = nodes.filter(({ category }) => category === key);
     const filters = [...new Set(filteredShoes.map(({ filter }) => filter))];
@@ -43,10 +45,21 @@ exports.createPages = async ({ graphql, actions }) => {
       path: `/${key}`,
       component: MenuPageTemplate,
       context: {
-        key: null,
         filters,
         names: [key],
       },
+    });
+
+    prizes.forEach((prize) => {
+      createPage({
+        path: `/${key}/${prize}`,
+        component: MenuPageTemplate,
+        context: {
+          prize,
+          filters,
+          names: [key],
+        },
+      });
     });
 
     filters.forEach((category) => {
@@ -78,13 +91,24 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
+  prizes.forEach((prize) => {
+    createPage({
+      path: `/all/${prize}/`,
+      component: MenuPageTemplate,
+      context: {
+        filters,
+        prize,
+        names: ["men", "women", "kids"],
+      },
+    });
+  });
+
   createPage({
     path: "/all",
     component: MenuPageTemplate,
     context: {
       filters,
       names: ["men", "women", "kids"],
-      key: null,
     },
   });
 

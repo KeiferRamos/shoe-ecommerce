@@ -1,6 +1,9 @@
 import { Link } from "gatsby";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+
+import SideModal from "./side-modal";
+
 import PhoneIcon from "../assets/images/phone.webp";
 import EmailIcon from "../assets/images/mail.webp";
 import WhatsappIcon from "../assets/images/whatsapp.webp";
@@ -131,6 +134,10 @@ const StyledFooter = styled.footer`
 `;
 
 function Footer() {
+  const [openChat, setOpenChat] = useState(false);
+
+  const closeChat = () => setOpenChat(false);
+
   return (
     <StyledFooter>
       <section className="title">
@@ -147,7 +154,9 @@ function Footer() {
         <Link to="/women">WOMEN</Link>
         <Link to="/kids">KIDS</Link>
         <Link to="/all">ALL</Link>
-        <button id="contact-us-btn">CONTACT US</button>
+        <button id="contact-us-btn" onClick={() => setOpenChat(true)}>
+          CONTACT US
+        </button>
       </section>
       <section className="contacts">
         <h2>Contacts</h2>
@@ -189,6 +198,7 @@ function Footer() {
         <img src={CopyRightIcon} alt="copyright symbol" />
         <p>{new Date().getFullYear()} Keifer Ramos. All Right Reserve.</p>
       </section>
+      <SideModal openChat={openChat} closeChat={closeChat}></SideModal>
     </StyledFooter>
   );
 }

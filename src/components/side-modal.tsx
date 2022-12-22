@@ -4,6 +4,7 @@ import CloseIcon from "../assets/images/close.webp";
 import PhoneIcon from "../assets/images/phone.webp";
 import EmailIcon from "../assets/images/mail.webp";
 import WebIcon from "../assets/images/whatsapp.webp";
+import LocationIcon from "../assets/images/location.webp";
 import Modal from "./modal-container";
 
 const ContactList = styled.ul`
@@ -11,27 +12,19 @@ const ContactList = styled.ul`
 
   li {
     display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+
+  font-size: 13px;
+  h3 {
+    font-weight: lighter;
+    font-size: 16px;
   }
 
   img {
-    width: 55px;
-    height: 55px;
-  }
-
-  @media (max-width: 360px) {
-    font-size: 13px;
-    margin-top: 15px;
-
-    img {
-      width: 40px;
-      height: 40px;
-    }
-
-    li {
-      margin-bottom: 10px;
-    }
+    width: 30px;
+    height: 30px;
   }
 `;
 
@@ -74,6 +67,13 @@ function SideModal({ openChat, closeChat }) {
           <div>
             <h3>Whatsapp</h3>
             <p>+63987654321</p>
+          </div>
+        </li>
+        <li>
+          <img src={LocationIcon} alt="location icon" />
+          <div>
+            <h3>office location</h3>
+            <p>NCR, Phillippines</p>
           </div>
         </li>
       </ContactList>
