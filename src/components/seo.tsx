@@ -5,8 +5,8 @@ type SeoDataTypes = {
   title: string;
   description?: string;
   keywords?: string;
-  image: string;
-  url: string;
+  image?: string;
+  url?: string;
 };
 
 function Seo({ title, description, keywords, image, url }: SeoDataTypes) {
@@ -17,8 +17,8 @@ function Seo({ title, description, keywords, image, url }: SeoDataTypes) {
       {description ? <meta name="description" content={description} /> : null}
       <meta name="og:image" content={image} />
       <link rel="canonical" href={url} />
-      <meta name="og:url" content={url} />
-      <meta name="twitter:image" content={image} />
+      {url && <meta name="og:url" content={url} />}
+      {image && <meta name="twitter:image" content={image} />}
       <meta name="twitter:card" content="summary_large_image" />
       {keywords ? <meta name="keywords" content={keywords} /> : null}
     </Helmet>
